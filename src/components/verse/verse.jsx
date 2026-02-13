@@ -4,7 +4,6 @@
  
  import axios from "axios";
  import { FaTimes } from "react-icons/fa";
- import addansound from "../../assets/quran/4027.mp3";
  import {
   FiShuffle,
   FiSkipBack,
