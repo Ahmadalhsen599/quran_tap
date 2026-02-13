@@ -129,11 +129,7 @@ const cities = [
           setVerse_sound_index(ayahs[targetAyah - 1].number); // رقم الآية المطلق
         }
         pendingAyahRef.current = null; // مسح القيمة بعد الاستخدام
-      } else {
-        // لو لم يكن هناك آية معلقة (حمل عادي للسورة)، ابدأ من أول آية
-        setindex(0);
-        setVerse_sound_index(1);
-      }
+      } 
     });
 }, [surah_index]);
  
@@ -168,7 +164,8 @@ const handlePrevious = () => {
 };
   useEffect(()=>{
     axios.get("https://api.alquran.cloud/v1/surah",).then((response)=>{
-    console.log(response.data.data);
+   
+
     setquran_verses(response.data.data);
     });
   },[]);
@@ -186,8 +183,7 @@ audio.current.src = verseAudio;
    useEffect(() => {
   if (!city || !country) return;
 
-  console.log("CITY:", city);
-console.log("COUNTRY:", country);
+ 
 
 
  axios.get(
@@ -201,10 +197,9 @@ console.log("COUNTRY:", country);
   }
 )
     .then(res => {
-        console.log("i am working now");
-        console.log(res.data.data);
+     
       setsallaTime(res.data.data.timings);
-      console.log(salaTime);
+     
     })
     .catch(err => {
       console.error("Error fetching prayer times:", err);
@@ -264,7 +259,6 @@ useEffect(() => {
     prayers.forEach(prayer => {
       const [prayerHour, prayerMinute] = prayer.time;
       if (currentHour === prayerHour && currentMinute === prayerMinute) {
-        console.log(`🕌 وقت ${prayer.name}: ${prayerHour}:${prayerMinute}`);
         aladdan_sound("active");
         
         // إيقاف الأذان بعد دقيقة (60,000 ميلي ثانية)
@@ -319,10 +313,13 @@ function convertTo12Hour(time24,is_for_prayertime) {
 
  async function ActivateSound() {
   if (!audio.current) return;
+  const verseAudio = `/api/audio/quran/audio/64/ar.abdulsamad/${vers_sound_index}.mp3`;
+  audio.current.src = verseAudio;
+  audio.current.load();
 
   if (!active) {
     try {
-      await audio.current.play();  // تأكد من التشغيل
+      await audio.current.play();  
       setActive(true);
     } catch (err) {
       console.log("Audio play error:", err);
@@ -332,6 +329,7 @@ function convertTo12Hour(time24,is_for_prayertime) {
     setActive(false);
   }
 }
+
 
     function aladdan_sound(state){
     if(state==="active"){
@@ -345,7 +343,7 @@ function convertTo12Hour(time24,is_for_prayertime) {
     }
     function toggel_prayer_time_setting(){
         setprayer_time_setting(!prayer_time_setting);
-        console.log(prayer_time_setting);
+      
     }
   function on_change_selector(e) {
     const selectedSurahName = e.target.value;
@@ -410,7 +408,7 @@ function on_submite() {
  setVerse_sound_index(vers_sound_index+1);
 }
 else if(index>=surah.length-1){
-console.log("hi iam working");
+
 setsurah_index(surah_index+1);
 setindex(0);
  setVerse_sound_index(vers_sound_index+1);
@@ -419,7 +417,7 @@ setindex(0);
  
    <FiSkipForward onClick={handleNext} />
    <MdSpeed/>
-   <FiMoreHorizontal onClick={()=>console.log("hiiii")}/>
+   <FiMoreHorizontal onClick={()=>{}}/>
         </div>
     </div>
      <div className={!active_change_vers?"change_verse none":"change_verse"}>
