@@ -8,16 +8,16 @@
 import { colors } from "@mui/material";
  const  Footer=function(){
      const [acive_changeBk,setacive_changeBk]=useState(false);
-     const my_background = [
-        "./../../image-6-DXoPmvju.png",
-        "./../../image-8-BWMmF9yc.png",
-        "./../../MasjidNabawi.jpg",
-        "./../../image-0-DG0ritwv.png",
-        "./../../image-3-B6164L1c.png",
-        "./../../image-4-uO-OL_Bk.png",
-        "./../../image-2-C8Ai7yYU.png",
-        "./../../image-7-Bpr2sKcS.png"
-    ];
+    const my_background = [
+  "/image-6-DXoPmvju.png",
+  "/image-8-BWMmF9yc.png",
+  "/MasjidNabawi.jpg",
+  "/image-0-DG0ritwv.png",
+  "/image-3-B6164L1c.png",
+  "/image-4-uO-OL_Bk.png",
+  "/image-2-C8Ai7yYU.png",
+  "/image-7-Bpr2sKcS.png"
+];
     // عند تحميل المكون، اقرأ القيمة المحفوظة وطبقها
         const savedUrl = localStorage.getItem("url");
         const main_body = document.getElementById("main_body");
