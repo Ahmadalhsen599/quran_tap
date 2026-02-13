@@ -1,7 +1,6 @@
  import React from "react";
  import { useState,useEffect ,useRef} from "react";
  import { MdSpeed } from "react-icons/md";
- import addansound from "../../assets/7s0XcspsYTI.mp3"
  import axios from "axios";
  import { FaTimes } from "react-icons/fa";
  import {
@@ -417,7 +416,7 @@ setindex(0);
  setVerse_sound_index(vers_sound_index+1);
 }
 }} crossOrigin="anonymous" />
-  <audio src={addansound}   ref={addan_sound}></audio>
+ 
    <FiSkipForward onClick={handleNext} />
    <MdSpeed/>
    <FiMoreHorizontal onClick={()=>console.log("hiiii")}/>
