@@ -1,8 +1,7 @@
  import React from "react";
  import { useState,useEffect ,useRef} from "react";
  import { MdSpeed } from "react-icons/md";
- import mySound from '../../assets/quran/001.mp3';
- import mySound1 from '../../assets/quran/002.mp3';
+ 
  import axios from "axios";
  import { FaTimes } from "react-icons/fa";
  import addansound from "../../assets/quran/4027.mp3";
