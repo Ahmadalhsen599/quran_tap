@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/audio/:path*",
+      "destination": "https://cdn.islamic.network/:path*"
+    }
+  ]
+}
