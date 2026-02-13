@@ -1,0 +1,331 @@
+*{
+    padding: 0;
+    margin: 0;
+  
+}
+.vers{
+    min-width: 400px;
+    max-width: 980px;
+    height: auto;
+    margin: auto;
+    font-size: 23px;
+    text-align: center;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: rgba(60, 60, 60, 0.3);
+    backdrop-filter:blur(10px);
+    
+    border-radius: 10px;
+    display: flex;
+    border: solid 0.5px rgb(131, 131, 131);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+   z-index: 1;
+}
+
+
+.vers ::-webkit-scrollbar{
+  display: none;
+}
+.d1{
+    width: 420px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    padding-top: 10px;
+}
+.d1 div {
+  height: 30px;
+  padding: 0 12px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 201, 201, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+}
+
+.d1 div span { transform: translateY(-0.5px);
+  font-size: 12px;
+  line-height: 1;
+  color: white;
+  display: block;
+}
+
+.d2{
+    
+    font-family: "QuranFont", Arial, sans-serif;
+    max-width: auto;
+    min-width: 200px;
+    overflow-y: auto;
+     min-height: 50px;
+     max-height: 160px;
+    color: white;
+    padding-top: 25px;
+    display: flex;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    line-height: 60px;
+    -ms-overflow-y-style: none; /* IE 10+ */
+    z-index: 100;
+}
+.d3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+    height: 40px;
+    padding-top: 10px;
+    color: white;
+    font-size: 17px;
+}
+.prayer_times{
+    min-width: 450px !important;
+    min-height: 90px !important;
+    max-width: 500px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: rgba(124, 124, 124, 0.3);
+    backdrop-filter:blur(10px);
+    color: white;
+    border-radius: 10px;
+    border: solid 0.5px rgb(233, 233, 233);
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ 
+}
+.Vers_main{
+   min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.volume{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(65, 65, 65, 0.3);
+  backdrop-filter:blur(30px);
+  position: absolute;
+  right: -20px;
+  bottom:  -20px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+  border-radius: 50px;
+}
+.musqe{
+display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(79, 79, 79, 0.9);
+  backdrop-filter:blur(100px);
+  position: absolute;
+  left: -20px;
+  bottom:  -20px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+  border-radius: 50px;
+}
+.prayer_name{
+width: 100%;
+margin-left: 10px;
+margin-right: 10px;
+margin: auto;
+height: 20px;
+display: flex;
+justify-content: space-between;
+font-size: 15px;
+}
+.prayer_line{
+width: 100%;
+margin-left: 10px;
+margin-right: 10px;
+margin: auto;
+background-color: rgb(165, 165, 165);
+height: 3px;
+border-radius: 30px;
+}
+.prayer_localTime{
+width: 100%;
+margin-left: 10px;
+margin-right: 10px;
+margin: auto;
+height: 50px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.prayer_localTime div{
+width: 82.6px;
+position: relative;
+height: 100%;
+font-size: 13px;
+font-weight: 300;
+}
+.prayer_name_to{
+width: auto;
+font-size: 12px !important;
+height: 100%;
+}
+.prayer_name_from{
+font-size: 12px !important;
+width: auto;
+height: 100%;
+}
+
+
+.prayer::before {
+  content: "";
+  position: absolute;
+   
+  
+  left: 0;
+  top: 10px;        /* بداية البوردر */
+  height: 20px;     /* طول البوردر */
+  width: 1px;
+  background: rgb(152, 152, 152);
+}
+.prayer_time_setting{
+  width: 500px !important;
+  height: 500px !important;
+  background-color: rgb(28, 36, 51);
+  border-radius: 10px;
+  border:1px solid rgb(61, 75, 103);
+  position: absolute;
+  z-index: 400;
+}
+.top_nav{
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid rgb(61, 75, 103);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position:sticky;
+ top: 0px;
+ z-index: 100;
+}
+.prayer_time_region_data{
+  width: 90%;
+  height: 150px;
+  background-color: rgb(39, 44, 57);
+  margin: auto;
+  position: relative;
+  top: 30px;
+  border-radius: 10px;
+  border: solid 1px rgb(61, 75, 103);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.prayer_time_region_data div{
+  width: 100%;
+  height: 50%;
+  border-bottom: solid 1px rgb(61, 75, 103);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+.country_unput{
+  border-bottom: none !important;
+}
+.region{
+  color: white;
+  font-size: 13px;
+  padding-left: 30px;
+  padding-top: 10px;
+  text-align: start;
+  font-weight: 300;
+}
+.city_input p{
+  padding-left: 20px;
+}
+.sellector1{
+  width: 40%;
+  height: 50%;
+  border-radius: 10px;
+  padding-left: 20px;
+  border: solid 1px rgb(61, 75, 103);
+  position: relative;
+  right:20px;
+  background-color: rgb(60, 64, 74);
+  color: white;
+  font-family: "UIFont", Arial, sans-serif;
+ 
+}
+.country_input p{
+padding-left: 20px;
+}
+.change_verse{
+  align-items: end;
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  height: 250px;
+  border-radius: 10px;
+  border: 1px solid rgb(61, 75, 103);
+  background-color: rgb(28, 36, 51);
+  position: absolute;
+  z-index: 400;
+  top: 80px;
+}
+.change_vers_title{
+  width: 100%;
+  border-bottom: 1px solid rgb(62, 75, 103);
+  height: 50px;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+select::-ms-expand {
+    display: none;
+}
+.selector2{
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+  width: 87%;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 38px;
+  border: 1px solid rgb(62, 75, 103);
+  background-color: rgb(35, 47, 60);
+  border-radius: 10px;
+}
+.bu3{
+  width: 50px;
+  bottom: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(0, 188, 125);
+  border: none;
+  position: relative;
+  top: -10px;
+  right: 20px;
+}

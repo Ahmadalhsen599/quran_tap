@@ -1,0 +1,230 @@
+ *{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+ }
+
+ .Navbar{
+   display: block;
+    width: 100%;
+    height: 50px;
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .Navbar div{
+   color: white;
+  
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ .left_side{
+width: 250px;
+height: 100%;
+ }
+ .left_side .time{
+   font-size: 25px;
+   color: white;
+
+ }
+ .PM{
+   font-size: 15px;
+ }
+ .right_side{
+   width: 250px;
+   height: 100%;
+  
+ }
+ .virtical_line{
+ width: 0.5px;
+ height: 30px;
+ background-color: white !important;
+ }
+ .Date{
+   display: block !important;
+   width: 130px;
+  
+   text-align: start;
+}
+ .Date p{
+   font-size: 13px;
+ }
+ .Link{
+   width: 40%;
+  
+   text-align: start !important;
+
+ }
+.azkar{ 
+   width: 40%;
+  
+   height: 100%;
+   display: flex;
+   justify-content: end !important;
+}
+.Remembrance{
+width: 150px;
+height: 90px;
+background-color: rgb(28, 36, 51);
+border-radius: 10px;
+position: absolute;
+right: 20px;
+top: 60px;
+}
+.ul1{
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  
+
+}
+.ul1 li p{
+  text-align: end;
+  padding-top:7px;
+  padding-bottom:7px;
+  padding-right: 20px;
+  font-size: 12px;
+  color: white;
+}
+.none{
+  display: none;
+}
+.Remembrance_content{
+border-radius: 10px;
+
+border: 1px rgb(61, 75, 103) solid;
+width: 580px;
+height: 550px;
+background-color: rgb(28, 36, 51);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+z-index: 100;
+overflow-y: scroll;
+  
+}
+.Remembrance_content::-webkit-scrollbar {
+  display: none;
+}
+.Remembrance_type{
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  width: 95%;
+  height: 55px;
+  border-radius: 10px;
+  background-color: rgb(61, 75, 103);
+  align-items: center;
+  margin: auto;
+  position: relative;
+  top: 40px;
+  bottom: 30px;
+}
+.Remembrance_type div{
+  width: 47%;
+  height: 80%;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   border-radius: 10px;
+}
+.right{
+  margin-left: 5px;
+}
+.left{
+  margin-right: 5px;
+}
+.active_Remembrance_type{
+  background-color: rgb(28, 36, 51);
+}
+.azkar_content{
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color:rgb(28, 36, 51);
+  color: white;
+  width: 100%;
+  height: auto;
+  border-top: none;
+  margin: auto;
+  border-bottom: solid 1px  rgb(61, 75, 103);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.quran_font{
+  font-family: "QuranFont", Arial, sans-serif;
+  font-size: 22px;
+}
+.doa_font{
+  line-height: 30px;
+  color:  rgb(203, 204, 208);;
+  font-family: "UIFont", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400 !important;
+}
+.alAzkar{
+  width: 90%;
+  margin: auto;
+  height: auto;
+  position: relative;
+  top: 40px;
+}
+.bu2{
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 35px;
+  font-family: "UIFont", Arial, sans-serif;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(61, 75, 103);
+  margin-top: 20px;
+}
+.none {
+  display: none;
+}
+.doaa_navbar{
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+ position:sticky;
+ top: 0px;
+ z-index: 100;
+  background-color:rgb(28, 36, 51);
+  border-bottom: 1px solid rgb(61, 75, 103);
+}
+.closeicon{
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: white;
+  font-weight: 200;
+  font-size: 14px;
+}
+.stiky{
+  position: sticky !important;
+  top: 15px !important;
+  left:  200px !important;
+  z-index: 100;
+}
+.Remmebernece_type_nav{
+  height: 120px;
+  background-color: rgb(28, 36, 51);
+  width: 100%;
+  position: sticky;
+  border-bottom: solid 1px rgb(106, 117, 138);
+  top: 0;
+  z-index: 200;
+}
