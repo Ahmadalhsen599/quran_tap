@@ -2,8 +2,10 @@
  import { useState,useEffect } from "react";
  import "./navbar.css";
  import { FaTimes } from "react-icons/fa";
+ import { usePopup } from "../../context/PopupContext.jsx";
+
  const Navbar=function(){
-    const[quranic_verse,setquranicverse]=useState(false);
+   
     const [quranic_doaa,setquranic_doaa]=useState([
   {
     "content": "اهدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ٦ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ٧",
@@ -529,31 +531,27 @@
     count: 0
   }
 ]]);
-    const [alazkar,setalazkar]=useState(false);
+  
     const[is_massa_azkar,setis_massa_azkar]=useState(false);
-    const [Remembrance,setRemembrance]=useState(false);
+    const { activePopup, openPopup, closePopup } = usePopup();
     const [time, setTime] = useState(new Date());
    useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000)},[]);
     function active_azkar(){
-        setazkar_content_index(1);
-         setis_massa_azkar(true);
+      setis_massa_azkar(true);
+      setazkar_content_index(1);
     }
     function toggel_quranic_doaa(){
-    setquranicverse(!quranic_verse);
-    setRemembrance(false);
-    setalazkar(false);
+   openPopup("quranic");
     }
     function toggel_azkar(){
-        setalazkar(!alazkar);
-        setRemembrance(false);
-        setquranicverse(false);
+       openPopup("azkar");
+       setazkar_content_index(0);
     }
     function deactive_azkar(){
-        setazkar_content_index(0);
-         setis_massa_azkar(false);
+       setis_massa_azkar(false);
     }
     function inc_counter(data){
         if(data.counter<=data.count){
@@ -632,10 +630,14 @@
         <div className="Link">روابط سريعة</div>
          <div className="virtical_line">
         </div>
-        <div className="azkar" onClick={()=>setRemembrance(!Remembrance)}>أذكار وأدعية</div>
+        <div className="azkar" onClick={() =>
+  activePopup === "menu"
+    ? closePopup()
+    : openPopup("menu")
+}>أذكار وأدعية</div>
     </div>
     </div>
-    <div className={Remembrance ?"Remembrance":"none"}>
+    <div className={activePopup === "menu" ? "Remembrance" : "none"}>
         <ul className="ul1" >
             <li>
             <p onClick={toggel_azkar}>أذكار الصباح والمساء</p>
@@ -648,9 +650,12 @@
             </li>
         </ul>
     </div>
-    <div className={alazkar?"Remembrance_content" :"Remembrance_content none"}>
+    <div className={activePopup === "azkar"
+  ? "Remembrance_content"
+  : "Remembrance_content none"}
+>
       <div className="Remmebernece_type_nav">
-   <FaTimes className="closeicon " onClick={toggel_azkar}/>
+   <FaTimes className="closeicon " onClick={closePopup}/>
      <div className="Remembrance_type  ">
         <div onClick={active_azkar} className={is_massa_azkar?"massa right  active_Remembrance_type":"massa right"}>اذكار المساء</div>
         <div onClick={deactive_azkar} className={!is_massa_azkar?"sabah left active_Remembrance_type":"sabah left"}>أذكار الصباح </div>
@@ -663,9 +668,12 @@
      </div>
     
     </div>
-    <div className={quranic_verse? "Remembrance_content":"Remembrance_content none"} >
+    <div className={activePopup === "quranic"
+  ? "Remembrance_content"
+  : "Remembrance_content none"}
+ >
      <div className="doaa_navbar">أدعية قرآنية
-     <FaTimes className="closeicon" onClick={toggel_quranic_doaa} />
+     <FaTimes className="closeicon" onClick={closePopup} />
 </div>
 {quranic_doaa.map((data,index)=>{return (<div key={index} className={data.type==="verse"?"alAzkar quran_font azkar_content":"alAzkar azkar_content"}>{data.content}</div>)})}
     </div>
