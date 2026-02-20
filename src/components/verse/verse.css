@@ -405,3 +405,21 @@ select::-ms-expand {
   font-size:12px;
   color:#94a3b8;
 }
+.altafser-favorite{
+width: 200px;
+height: 130px;
+background-color:  #1e293b;
+border-radius: 10px;
+position: absolute;
+z-index: 400;
+right: 480px;
+top: 380px;
+}
+.altafser-favorite p{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 90%;
+  height: 40px;
+  background-color: #94a3b8;
+}

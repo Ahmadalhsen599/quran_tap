@@ -552,6 +552,7 @@
     }
     function deactive_azkar(){
        setis_massa_azkar(false);
+       setazkar_content_index(0);
     }
     function inc_counter(data){
         if(data.counter<=data.count){

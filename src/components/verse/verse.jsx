@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { MdSpeed } from "react-icons/md";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
+import { FiBookmark } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 import {
   FiShuffle,
   FiSkipBack,
@@ -563,6 +565,11 @@ function handleSearchResultClick(result) {
     </div>
   </div>
 )}
+ <div className="altafser-favorite">
+  <p>اضف للمفضلة <FaHeart size={24} color="red" />
+ </p>
+  <p>التفسير  <FiBookmark size={24} color="blue" /></p>
+ </div>
     </div>
   );
 };
