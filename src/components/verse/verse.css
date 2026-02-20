@@ -25,7 +25,9 @@
     align-items: center;
    z-index: 1;
 }
-
+.none{
+  display: none;
+}
 
 .vers ::-webkit-scrollbar{
   display: none;
@@ -407,6 +409,7 @@ select::-ms-expand {
 }
 .altafser-favorite{
 width: 200px;
+
 height: 130px;
 background-color:  #1e293b;
 border-radius: 10px;

@@ -565,7 +565,7 @@ function handleSearchResultClick(result) {
     </div>
   </div>
 )}
- <div className="altafser-favorite">
+ <div className="altafser-favorite none">
   <p>اضف للمفضلة <FaHeart size={24} color="red" />
  </p>
   <p>التفسير  <FiBookmark size={24} color="blue" /></p>
