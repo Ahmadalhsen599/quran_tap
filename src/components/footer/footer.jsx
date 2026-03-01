@@ -48,14 +48,14 @@ const Footer = function () {
     <div className="footer">
 
       <div className="leftside">
-        <FaCog color="white" size={23} />
-        <FaVolumeUp color="white" size={23} onClick={() => openPopup("soundMenu")} />
-        <FaPaintRoller color="white" size={23} onClick={() => openPopup("chBk")} />
+        <FaCog style={{cursor:"pointer"}} color="white" size={23} />
+        <FaVolumeUp style={{cursor:"pointer"}} color="white" size={23} onClick={() => openPopup("soundMenu")} />
+        <FaPaintRoller style={{cursor:"pointer"}} color="white" size={23} onClick={() => openPopup("chBk")} />
       </div>
 
       <div className="rightside">
-        <FaBookmark color="white" size={23} />
-        <button className="bu1">
+        <FaBookmark style={{cursor:"pointer"}} color="white" size={23} />
+        <button style={{cursor:"pointer"}} className="bu1">
           شارك الثواب <FaLeaf color="green" />
         </button>
       </div>
@@ -63,13 +63,13 @@ const Footer = function () {
       {/* تغيير الخلفية */}
       <div className={activePopup === "chBk" ? "change_background" : "change_background none"}>
         <div className="change_nav">
-          <FaTimes className="closeicon" onClick={closePopup} color="white" />
+          <FaTimes style={{cursor:"pointer"}} className="closeicon" onClick={closePopup} color="white" />
           <p className="display_setting">إعدادات العرض</p>
         </div>
 
         <p className="p1">الخلفية</p>
 
-        <div className="background_type">
+        <div style={{cursor:"pointer"}} className="background_type">
           {my_background.map((data, index) => (
             <img
               key={index}
@@ -85,10 +85,10 @@ const Footer = function () {
       {/* التحكم بالصوت */}
       <div className={activePopup === "soundMenu" ? "sound_popup" : "sound_popup none"}>
         <div className="sound_nav">
-          <FaTimes className="closeicon" onClick={closePopup} />
+          <FaTimes style={{cursor:"pointer"}} className="closeicon" onClick={closePopup} />
         </div>
 
-        <p>مستوى صوت الأذان</p>
+        <p style={{cursor:"pointer"}}>مستوى صوت الأذان</p>
         <input
           type="range"
           min="0"

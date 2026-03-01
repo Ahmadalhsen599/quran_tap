@@ -631,7 +631,7 @@
         <div className="Link">روابط سريعة</div>
          <div className="virtical_line">
         </div>
-        <div className="azkar" onClick={() =>
+        <div style={{cursor:"pointer"}} className="azkar" onClick={() =>
   activePopup === "menu"
     ? closePopup()
     : openPopup("menu")
@@ -641,10 +641,10 @@
     <div className={activePopup === "menu" ? "Remembrance" : "none"}>
         <ul className="ul1" >
             <li>
-            <p onClick={toggel_azkar}>أذكار الصباح والمساء</p>
+            <p style={{cursor:"pointer"}} onClick={toggel_azkar}>أذكار الصباح والمساء</p>
             </li>
               <li>
-            <p onClick={toggel_quranic_doaa}>أدعية قرانية</p>
+            <p style={{cursor:"pointer"}} onClick={toggel_quranic_doaa}>أدعية قرانية</p>
             </li>
              <li>
             <p>أذكارك الخاصة </p>
@@ -656,16 +656,16 @@
   : "Remembrance_content none"}
 >
       <div className="Remmebernece_type_nav">
-   <FaTimes className="closeicon " onClick={closePopup}/>
+   <FaTimes style={{cursor:"pointer"}} className="closeicon " onClick={closePopup}/>
      <div className="Remembrance_type  ">
-        <div onClick={active_azkar} className={is_massa_azkar?"massa right  active_Remembrance_type":"massa right"}>اذكار المساء</div>
-        <div onClick={deactive_azkar} className={!is_massa_azkar?"sabah left active_Remembrance_type":"sabah left"}>أذكار الصباح </div>
+        <div style={{cursor:"pointer"}} onClick={active_azkar} className={is_massa_azkar?"massa right  active_Remembrance_type":"massa right"}>اذكار المساء</div>
+        <div style={{cursor:"pointer"}} onClick={deactive_azkar} className={!is_massa_azkar?"sabah left active_Remembrance_type":"sabah left"}>أذكار الصباح </div>
        
       </div>
      
      </div> 
      <div className="alAzkar">
-        {azkar[azkar_content_index].map((data,index)=>{return(<div key={index} className={data.type==="verse"? "azkar_content quran_font":"azkar_content doa_font"} >{data.content} <button onClick={()=>inc_counter(data)} className="bu2">{data.count+" / "+data.counter}</button></div>)})}
+        {azkar[azkar_content_index].map((data,index)=>{return(<div key={index} className={data.type==="verse"? "azkar_content quran_font":"azkar_content doa_font"} >{data.content} <button style={{cursor:"pointer"}} onClick={()=>inc_counter(data)} className="bu2">{data.count+" / "+data.counter}</button></div>)})}
      </div>
     
     </div>
@@ -674,7 +674,7 @@
   : "Remembrance_content none"}
  >
      <div className="doaa_navbar">أدعية قرآنية
-     <FaTimes className="closeicon" onClick={closePopup} />
+     <FaTimes style={{cursor:"pointer"}} className="closeicon" onClick={closePopup} />
 </div>
 {quranic_doaa.map((data,index)=>{return (<div key={index} className={data.type==="verse"?"alAzkar quran_font azkar_content":"alAzkar azkar_content"}>{data.content}</div>)})}
     </div>

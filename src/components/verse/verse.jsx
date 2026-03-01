@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdSpeed } from "react-icons/md";
-import axios from "axios";
+import axios, { Axios } from "axios";
 import { FaTimes } from "react-icons/fa";
 import { FiBookmark } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
+import {  FaGlobe, FaBook } from 'react-icons/fa';
+import DOMPurify from "dompurify";
 import {
   FiShuffle,
   FiSkipBack,
@@ -53,17 +55,46 @@ const [showSearch, setShowSearch] = useState(false);
 const [searchTerm, setSearchTerm] = useState("");
 const [searchResults, setSearchResults] = useState([]);
 const [allAyahs, setAllAyahs] = useState([]);
-
-
+const [tafser_person,setTafser_person]=useState([]);
+const [person,setPerson]=useState({data:{
+    id: 94,
+   
+    name: "Tafseer Al-Baghawi",
+    author_name: "Baghawy",
+    slug: "ar-tafsir-al-baghawi",
+    language_name: "arabic",
+    translated_name: {
+        name: "تفسير البغوي‎",
+        language_name: "arabic"
+    }
+},active:false});
+const[tafser,settafser]=useState([]);
   // حالات جديدة للسرعة والتكرار
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);        // سرعة التشغيل الحالية
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);     // إظهار/إخفاء قائمة السرعة
   const [repeat, setRepeat] = useState(false);                   // حالة التكرار
-
-  function deactivate() {
-    setActive(!active);
-  }
-
+  const tafser_person_id=[ 94,
+16,
+90,
+15,
+14,
+91];
+ 
+useEffect(()=>{
+ axios.get("https://api.qurancdn.com/api/v4/resources/tafsirs?language=ar").then((result)=>{
+  const filtered = result.data.tafsirs.filter(tafsir =>
+  tafser_person_id.includes(tafsir.id)
+);
+setTafser_person(filtered);
+ console.log(filtered);
+ });
+},[]);
+useEffect(()=>{
+  axios.get(`https://api.qurancdn.com/api/v4/tafsirs/${person.data.slug}/by_ayah/${surah_index}:${index+1}?locale=ar`).then(result=>{
+  console.log(person);
+    settafser(result.data.tafsir.text);
+  })
+},[index,surah_index,person])
   useEffect(() => {
     axios.get(`https://api.alquran.cloud/v1/surah/${surah_index}/ar.alafasy`)
       .then((data) => {
@@ -120,12 +151,11 @@ function handleSearchResultClick(result) {
   setShowSearch(false);
   setSearchTerm("");
 }
-
   const handleNext = () => {
     if (index < surah.length - 1) {
       setindex(prev => prev + 1);
     } else {
-      setsurah_index(prev => prev + 1);
+      setsurah_index(surah_index+1);
       setindex(0);
     }
   };
@@ -150,10 +180,8 @@ function handleSearchResultClick(result) {
   useEffect(() => {
     if (!audio.current) return;
     if (!surah[index]) return;
-
     const verseNumber = surah[index].number;
     const verseAudio = `/api/audio/quran/audio/64/ar.abdulsamad/${verseNumber}.mp3`;
-
     audio.current.src = verseAudio;
     audio.current.load();
     audio.current.playbackRate = playbackSpeed; // تطبيق السرعة الحالية
@@ -170,7 +198,6 @@ function handleSearchResultClick(result) {
 
     const verseNumber = surah[index].number;
     const verseAudio = `/api/audio/quran/audio/64/ar.abdulsamad/${verseNumber}.mp3`;
-
     audio.current.src = verseAudio;
     audio.current.load();
     audio.current.playbackRate = playbackSpeed;
@@ -380,9 +407,20 @@ function handleSearchResultClick(result) {
     pendingAyahRef.current = newAyahNumber;
     setactivechangevrs(false);
   }
-
+function handletafser_favorite(){
+openPopup("tafser_fav");
+}
+function handle_tafser(){
+  openPopup("tefser");
+}
+function handle_person_click(person){
+setPerson({data:person,active:true});
+}
+function close_menue(){
+  closePopup();
+}
   return (
-    <div className="Vers_main">
+    <div className="Vers_main" >
       <div className="vers">
         <div className="d1">
           <div className="" onClick={() => setactivechangevrs(true)}>
@@ -407,9 +445,9 @@ function handleSearchResultClick(result) {
             onClick={toggleRepeat} 
             style={{ color: repeat ? '#10b981' : 'inherit', cursor: 'pointer' }} 
           />
-          <FiSkipBack onClick={handlePrevious} />
+          <FiSkipBack style={{cursor:'pointer'}} onClick={handlePrevious} />
           <div className="sound" onClick={ActivateSound}>
-            {!active ? <FaPlay /> : <FaPause />}
+            {!active ? <FaPlay style={{cursor:'pointer'}}/> : <FaPause style={{cursor:'pointer'}}/>}
           </div>
           <audio
             ref={audio}
@@ -430,9 +468,9 @@ function handleSearchResultClick(result) {
             }}
             crossOrigin="anonymous"
           />
-          <FiSkipForward onClick={handleNext} />
+          <FiSkipForward style={{cursor:'pointer'}} onClick={handleNext} />
           <div style={{ position: 'relative', display: 'inline-block' }}>
-            <MdSpeed onClick={toggleSpeedMenu} style={{ cursor: 'pointer' }} />
+            <MdSpeed  onClick={toggleSpeedMenu} style={{ cursor: 'pointer' }} />
             {activePopup==="speedMenu" && (
               <div  className="speed-menu" >
                 {[0.5, 0.75, 1, 1.25, 1.5, 2].map(speed => (
@@ -453,7 +491,7 @@ function handleSearchResultClick(result) {
               </div>
             )}
           </div>
-          <FiMoreHorizontal onClick={() => {}} />
+          <FiMoreHorizontal style={{cursor:'pointer'}} onClick={() => {handletafser_favorite()}} />
         </div>
       </div>
 
@@ -565,10 +603,47 @@ function handleSearchResultClick(result) {
     </div>
   </div>
 )}
- <div className="altafser-favorite none">
-  <p>اضف للمفضلة <FaHeart size={24} color="red" />
+ <div  className={activePopup==="tafser_fav"?"altafser-favorite":"altafser-favorite none"}>
+  <p style={{cursor:"pointer"}}>اضف للمفضلة <FaHeart size={22}  />
  </p>
-  <p>التفسير  <FiBookmark size={24} color="blue" /></p>
+  <p style={{cursor:"pointer"}} onClick={handle_tafser}>التفسير  <FaBook size={22}  /></p>
+ </div>
+ <div className={activePopup==="tefser"?"altafser":"altafser none"} >
+<FaTimes style={{cursor:"pointer"}} className="closeicon" onClick={closePopup}/>
+<div className="altafser_header">
+  التفسير
+</div>
+<div className="tefser_verse">
+  {surah[index]?.text + ` ${surah[index]?.numberInSurah.toLocaleString('ar-EG')} ` || "" + surah[index]?.number}
+</div>
+<hr className="hr1" />
+{/* <div className="altafser_person">
+{tafser_person.map((data,index)=>{
+  const active=person.active
+  return(<p className={active?"active":""} onClick={()=>{handle_person_click(data)}} key={index}>
+    {data.translated_name.name}
+  </p>);
+})}
+</div> */}
+<div className="altafser_person">
+{tafser_person.map((data,index)=>{
+  const isActive = data.id === person.data.id;
+
+  return(
+    <p style={{cursor:"pointer"}}
+      key={data.id}
+      onClick={() => handle_person_click(data)}
+      className={isActive ? "active" : ""}
+    >
+      {data.translated_name.name}
+    </p>
+  );
+})}
+</div>
+<div className="altafser_content" dangerouslySetInnerHTML={{
+    __html: DOMPurify.sanitize(tafser),
+  }}>
+</div>
  </div>
     </div>
   );
