@@ -533,3 +533,24 @@ color: white;
   background-clip: content-box;
 }
 
+.reader{
+  padding: 20px;
+  position: absolute;
+  z-index: 2000;
+  width: 500px !important;
+  height: 500px !important;
+  margin: auto;
+  background-color: #1e293b !important;
+  border-radius: 10px !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+
+}
+.reader_person{
+background-color:#334155;
+border-radius: 10px;
+height: 60px;
+color: white;
+}

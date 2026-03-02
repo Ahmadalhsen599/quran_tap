@@ -29,6 +29,8 @@ const Verse = function () {
       d.getMonth() + 1
     ).padStart(2, "0")}-${d.getFullYear()}`;
   };
+  const reader=["ar.abdulsamad","ar.alafasy"];
+  const [reader_person,setreader_person]=useState(reader[1]);
   const countries = [ "Afghanistan", "Albania", "Algeria", "Argentina", "Australia", "Bangladesh", "Brazil", "Canada", "Chile", "China", "Egypt", "France", "Germany", "India", "Indonesia", "Iraq", "Italy", "Jordan", "Kenya", "Malaysia", "Netherlands", "Nigeria", "Pakistan", "Qatar", "Saudi Arabia", "South Africa", "Spain", "Syria", "Turkey", "United Arab Emirates", "United Kingdom", "United States", "Yemen"]; // مصفوفة الدول
   const cities = [ "Damascus", "Aleppo", "Homs", "Latakia", "Baghdad", "Dubai", "Istanbul", "London", "New York", "Paris", "Cairo", "Karachi", "Islamabad", "Riyadh", "Jeddah", "Kuala Lumpur", "Jakarta", "Dhaka", "Beirut", "Manama", "Doha", "Kuwait City", "Amman", "Tunis", "Algiers", "Casablanca"];    // مصفوفة المدن
   const [verse_ayah, setverse_ayah] = useState([]);
@@ -181,7 +183,7 @@ function handleSearchResultClick(result) {
     if (!audio.current) return;
     if (!surah[index]) return;
     const verseNumber = surah[index].number;
-    const verseAudio = `/api/audio/quran/audio/64/ar.abdulsamad/${verseNumber}.mp3`;
+    const verseAudio = `/api/audio/quran/audio/64/${reader_person}/${verseNumber}.mp3`;
     audio.current.src = verseAudio;
     audio.current.load();
     audio.current.playbackRate = playbackSpeed; // تطبيق السرعة الحالية
@@ -189,7 +191,7 @@ function handleSearchResultClick(result) {
     if (active) {
       audio.current.play().catch(err => console.log(err));
     }
-  }, [index, surah, active, playbackSpeed]); // أضفنا playbackSpeed كتأثير عند تغيير السرعة
+  }, [index, surah, active, playbackSpeed,reader_person]); // أضفنا playbackSpeed كتأثير عند تغيير السرعة
 
   // دالة تشغيل/إيقاف الصوت
   async function ActivateSound() {
@@ -372,7 +374,7 @@ function handleSearchResultClick(result) {
   }
 
   function toggel_prayer_time_setting() {
-    setprayer_time_setting(!prayer_time_setting);
+  openPopup("sala_setting");
   }
 
   function on_change_selector(e) {
@@ -419,15 +421,20 @@ setPerson({data:person,active:true});
 function close_menue(){
   closePopup();
 }
+function handle_chage_reader(data){
+setreader_person(data);
+}
+
   return (
     <div className="Vers_main" >
       <div className="vers">
         <div className="d1">
-          <div className="" onClick={() => setactivechangevrs(true)}>
+          <div style={{cursor:'pointer'}} className="" onClick={() => setactivechangevrs(true)}>
             <span>Al-Baqarah (مدنية - 286 آية)</span>
           </div>
-          <div className="">
-            <span>abdulsamad</span>
+          <div onClick={()=>{openPopup("reader_change")}} style={{cursor:'pointer'}} className="">
+            <span>{reader_person}</span>
+            
           </div>
           <div className="">
             {/* <span>البحث في الآيات</span> */}
@@ -458,12 +465,12 @@ function close_menue(){
                 audio.current.play().catch(err => console.log(err));
               } else {
                 // وإلا ننتقل إلى التالية
-                if (index < surah.length - 1) {
-                  setindex(prev => prev + 1);
-                } else {
-                  setsurah_index(prev => prev + 1);
-                  setindex(0);
-                }
+                // if (index < surah.length - 1) {
+                //   setindex(prev => prev + 1);
+                // } else {
+                //   setsurah_index(prev => prev + 1);
+                //   setindex(0);
+                // }
               }
             }}
             crossOrigin="anonymous"
@@ -499,7 +506,7 @@ function close_menue(){
       <div className={!active_change_vers ? "change_verse none" : "change_verse"}>
         <div className="change_vers_title">
           تغيير الآية
-          <FaTimes className="closeicon" onClick={() => setactivechangevrs(false)} />
+          <FaTimes style={{cursor:'pointer'}} className="closeicon" onClick={() => setactivechangevrs(false)} />
         </div>
         <select className="selector2" onChange={(e) => on_change_selector(e)}>
           {quran_verses.map((data, index) => (
@@ -536,10 +543,10 @@ function close_menue(){
         </div>
       </div>
 
-      <div className={prayer_time_setting ? "prayer_time_setting" : "prayer_time_setting none"}>
+      <div className={activePopup==="sala_setting" ? "prayer_time_setting" : "prayer_time_setting none"}>
         <div className="top_nav">
           اعدادات الصلاة
-          <FaTimes onClick={toggel_prayer_time_setting} className="closeicon" />
+          <FaTimes onClick={()=>closePopup()} className="closeicon" />
         </div>
         <p className="region">الموقع</p>
         <div className="prayer_time_region_data">
@@ -645,6 +652,11 @@ function close_menue(){
   }}>
 </div>
  </div>
+ <div  className={activePopup==="reader_change"?"reader":"reader none"}>
+{reader.map((data)=>{return (<div onClick={()=>{handle_chage_reader(data);closePopup();}} className="reader_person">
+  {data}
+</div>)})}
+            </div>
     </div>
   );
 };
